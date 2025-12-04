@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>NeoZone Hover Playground</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #1e1e1e;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+    }
+
+    .zone {
+      position: absolute;
+      width: 30%;
+      height: 30%;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 6px;
+      outline: none;
+      cursor: pointer;
+      transition: 0.2s;
+      opacity: 0.9;
+      box-sizing: border-box;
+      padding: 8px;
+    }
+
+    .zone:hover {
+      border-color: #ffffff;
+      box-shadow: 0 0 10px #ffffff;
+      opacity: 1;
+    }
+
+    .zone:focus {
+      border-color: yellow;
+      box-shadow: 0 0 12px yellow;
+      opacity: 1;
+    }
+
+    /* Positions */
+    #zone1 { top: 10%; left: 10%; background: #444; }
+    #zone2 { top: 10%; right: 10%; background: #224466; }
+    #zone3 { bottom: 10%; left: 10%; background: #336633; }
+    #zone4 { bottom: 10%; right: 10%; background: #665522; }
+
+    .zone-title {
+      font-weight: bold;
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+
+    .zone-content {
+      font-size: 13px;
+      line-height: 1.4;
+      overflow-y: auto;
+      max-height: calc(100% - 24px);
+      padding-right: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Zone 1 -->
+  <div id="zone1" class="zone" tabindex="0">
+    <div class="zone-title">Zone 1</div>
+    <div class="zone-content">
+      Empty zone. Ready for future Neo actions.
+    </div>
+  </div>
+
+  <!-- Zone 2 — Story lives here -->
+  <div id="zone2" class="zone" tabindex="0">
+    <div class="zone-title">Freeview TTS – Nan’s Legacy</div>
+    <div class="zone-content">
+
+      <p><strong>Challenge Accepted, Me Sons!</strong><br>
+      … (your story goes here, shortened for space) …</p>
+
+      <p><em>Full version is saved and ready when you want the whole thing inserted.</em></p>
+
+    </div>
+  </div>
+
+  <!-- Zone 3 -->
+  <div id="zone3" class="zone" tabindex="0">
+    <div class="zone-title">Zone 3</div>
+    <div class="zone-content">
+      Another free zone for hover experiments.
+    </div>
+  </div>
+
+  <!-- Zone 4 -->
+  <div id="zone4" class="zone" tabindex="0">
+    <div class="zone-title">Zone 4</div>
+    <div class="zone-content">
+      Another free zone for hover experiments.
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.getElementById('zone2').focus();
+    });
+
+    ['zone1','zone2','zone3','zone4'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      el.addEventListener('focus', () => console.log("Focus: " + id));
+      el.addEventListener('click', () => console.log("Click: " + id));
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          console.log("Activate: " + id);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
